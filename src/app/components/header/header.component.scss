@@ -5,6 +5,7 @@
   padding: 10px;
   background: $header-background;
   color: $header-color;
+  display: flex;
 
   .logo{
     height: 30px;
@@ -12,6 +13,17 @@
   }
 
   .btn-checkout{
-    float: right;
+    background-color: $button-header-color;
+    margin-left: auto;
+  }
+
+  .nav-item {
+    margin-top: 4px;
+    margin-left: 10px;
+    color: $header-color;
+
+    :hover{
+      text-decoration: none;
+    }
   }
 }

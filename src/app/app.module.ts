@@ -25,10 +25,13 @@ import { CartProvider } from './providers/cart.provider';
 import { ApiProvider } from './providers/api.provider';
 import { ItemsProvider } from './providers/items.provider';
 import { VoucherCodeComponent } from './components/voucher-code/voucher-code.component';
+import { CategoryListComponent } from './containers/category-list/category-list.component';
 
 // Routes
 const routes: Routes = [
   { path: 'items', component: ItemListComponent },
+  { path: 'items/category/:ref', component: ItemListComponent },
+  { path: 'categories', component: CategoryListComponent },
   { path: 'items/:ref', component: ItemDescComponent },
   { path: 'checkout', component: CheckoutCartComponent },
   { path: '**', redirectTo: 'items' },
@@ -57,7 +60,8 @@ const routes: Routes = [
     ItemsListItemComponent,
     LoadingSpinnerComponent,
     NetworkErrorComponent,
-    VoucherCodeComponent
+    VoucherCodeComponent,
+    CategoryListComponent
   ],
   bootstrap: [AppComponent]
 })

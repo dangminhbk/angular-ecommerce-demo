@@ -20,6 +20,24 @@ export class ItemsProvider {
 
   getItemsList(): Observable<Array<ItemsListItem>> {
     const itemsList: string = this.storeApiPath + AppConst.STORE_API_PATHS.getItems;
+    // const itemsList: string = 'http://5e0eb0be9576aa001466604b.mockapi.io/Product';
+    return this.apiProvider.httpGet(itemsList)
+      .pipe(
+        map((res: any) => {
+        if (res) {
+          res = itemsListMock;
+          res = res.map((item) => (
+            new ItemsListItem(item)
+          ));
+        }
+        console.log('res is ', res);
+        return res;
+      }));
+  }
+
+  getItemByCategory(categoryId: string ): Observable<Array<ItemsListItem>> {
+    const itemsList: string = this.storeApiPath + AppConst.STORE_API_PATHS.getItems;
+    // const itemsList: string = 'http://5e0eb0be9576aa001466604b.mockapi.io/Product';
     return this.apiProvider.httpGet(itemsList)
       .pipe(
         map((res: any) => {
