@@ -10,6 +10,7 @@ import { ItemDescription } from '../models/item-description';
 
 import itemsListMock from '../mock/items-list';
 import itemsDesriptionListMock from '../mock/items-description';
+import { CategoryListItem } from 'app/models/categories-item';
 
 @Injectable()
 export class ItemsProvider {
@@ -25,7 +26,7 @@ export class ItemsProvider {
       .pipe(
         map((res: any) => {
         if (res) {
-          res = itemsListMock;
+          // res = itemsListMock;
           res = res.map((item) => (
             new ItemsListItem(item)
           ));
@@ -37,12 +38,11 @@ export class ItemsProvider {
 
   getItemByCategory(categoryId: string ): Observable<Array<ItemsListItem>> {
     const itemsList: string = this.storeApiPath + AppConst.STORE_API_PATHS.getItems;
-    // const itemsList: string = 'http://5e0eb0be9576aa001466604b.mockapi.io/Product';
     return this.apiProvider.httpGet(itemsList)
       .pipe(
         map((res: any) => {
         if (res) {
-          res = itemsListMock;
+          // res = itemsListMock;
           res = res.map((item) => (
             new ItemsListItem(item)
           ));
@@ -59,9 +59,24 @@ export class ItemsProvider {
       .pipe(
         map((res: any) => {
         if (res) {
-          res = itemsDesriptionListMock[Number(id) - 1];
           res = new ItemDescription(res);
         }
+        return res;
+      }));
+  }
+
+  getCategoryList(): Observable<Array<CategoryListItem>> {
+    const itemsList: string = this.storeApiPath + AppConst.STORE_API_PATHS.getCategories;
+    return this.apiProvider.httpGet(itemsList)
+      .pipe(
+        map((res: any) => {
+        if (res) {
+          // res = itemsListMock;
+          res = res.map((item) => (
+            new CategoryListItem(item)
+          ));
+        }
+        console.log('res is ', res);
         return res;
       }));
   }

@@ -1,7 +1,8 @@
 export class AppConst {
   public static readonly STORE_API_PATHS = {
-    getItems: '/people',
-    itemDescription: '/people/{{id}}',
+    getItems: '/api/products',
+    itemDescription: '/api/products/{{id}}',
+    getCategories: '/api/productCategories',
     buyItems: '/people',
     verfiyVoucher: '/people'
   };

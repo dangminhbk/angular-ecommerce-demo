@@ -1,3 +1,31 @@
-<p>
-  category-list works!
-</p>
+<div class="container">
+  <h1>{{title}}</h1>
+    <ng-container *ngIf="isLoading">
+      <app-loading-spinner>
+        Loading products list ... Please wait.
+      </app-loading-spinner>
+    </ng-container>
+    <ng-container *ngIf="isError">
+      <app-network-error-component></app-network-error-component>
+    </ng-container>
+    <div *ngIf="!isLoading" class="container-fluid">
+      <div class="row">
+        <div *ngFor="let item of itemsList" class="col-md-4">
+          <div class="items-list-item" *ngIf="item">
+            <mat-card (click)="handleItemClick(item.id)" >
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h4 *ngIf="item.label">
+                      <strong>{{item.label}}</strong>
+                    </h4>
+                    <button mat-raised-button color="primary" class="detail-button">More Info</button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
